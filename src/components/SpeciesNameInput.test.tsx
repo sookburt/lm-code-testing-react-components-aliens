@@ -5,16 +5,12 @@ describe("SpeciesNameInput", () => {
 
   beforeEach(() => {
     const state = {speciesName: 'human'}
-    render(<SpeciesNameInput speciesName= {state.speciesName}/>);
+    render(<SpeciesNameInput{...state}/>);
   });
   
   test('renders Species Name input label', () => {
     const labelText = screen.getByText(/Species Name/i);
     expect(labelText).toBeInTheDocument();
   });
-  
-  // test('renders Species Name input label', () => {
-  //   const labelText = screen.getByText(/Species Name/i);
-  //   expect(labelText).toBeInTheDocument();
-  // });
+
 })
