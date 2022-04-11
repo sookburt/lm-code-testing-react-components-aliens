@@ -1,9 +1,7 @@
 
-interface Props {
-  speciesName: string;
-}
+import SpeciesNameProps from './SpeciesNameProps';
 
-const SpeciesNameInput:React.FC<Props> = ({speciesName}) => {
+const SpeciesNameInput:React.FC<SpeciesNameProps> = ({speciesName}) => {
 
   return (
     <>
