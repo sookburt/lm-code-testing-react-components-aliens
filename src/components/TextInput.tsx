@@ -5,7 +5,7 @@ export interface Props {
   updateMethod: (name:string) => void;
 }
 
-const FormInput: React.FC<Props> = ({id, labelName, value, updateMethod}) => {
+const TextInput: React.FC<Props> = ({id, labelName, value, updateMethod}) => {
 
   return (
     <>
@@ -18,4 +18,4 @@ const FormInput: React.FC<Props> = ({id, labelName, value, updateMethod}) => {
 
 }
 
-export default FormInput;
+export default TextInput;
