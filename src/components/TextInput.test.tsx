@@ -4,7 +4,7 @@ import TextInput, {Props} from './TextInput';
 describe("TextInput", () => {
 
   test("renders Planet Name input label", () => {
-    const state:Props = {id: 'planet_name', labelName: 'Planet Name', value: 'Earth', updateMethod: () => {} }
+    const state: Props = {id: 'planet_name', labelName: 'Planet Name', value: 'Earth', updateMethod: () => {} }
     render(<TextInput 
       id={state.id} 
       labelName={state.labelName} 
@@ -15,7 +15,7 @@ describe("TextInput", () => {
   });
 
   test("renders Species Name input label", () => {
-    const state:Props = {id: 'species_name', labelName: 'Species Name', value: 'Human', updateMethod: () => {} }
+    const state: Props = {id: 'species_name', labelName: 'Species Name', value: 'Human', updateMethod: () => {} }
     render(<TextInput 
       id={state.id} 
       labelName={state.labelName} 
@@ -26,7 +26,7 @@ describe("TextInput", () => {
   });
 
   test("renders Number of Beings input label", () => {
-    const state:Props = {id: 'num_beings', labelName: 'Number Of Beings', value: '0', updateMethod: () => {} }
+    const state: Props = {id: 'num_beings', labelName: 'Number Of Beings', value: '0', updateMethod: () => {} }
     render(<TextInput 
       id={state.id} 
       labelName={state.labelName} 
