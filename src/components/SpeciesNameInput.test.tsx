@@ -1,11 +1,11 @@
 import { screen, render, cleanup } from '@testing-library/react';
-import SpeciesNameInput from './SpeciesNameInput';
+import SpeciesNameInput, {Props} from './SpeciesNameInput';
 
 describe("SpeciesNameInput", () => {
 
   beforeEach(() => {
-    const state = {speciesName: 'human'}
-    render(<SpeciesNameInput{...state}/>);
+    const state:Props = {speciesName: 'Human', updateMethod: () => {}}
+    render(<SpeciesNameInput speciesName={state.speciesName} updateMethod={state.updateMethod}/>);
   });
 
   afterEach(() => {
