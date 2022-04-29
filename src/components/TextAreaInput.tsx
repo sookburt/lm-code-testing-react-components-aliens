@@ -9,7 +9,6 @@ const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateMethod
         <textarea id={id} className='form--items' 
           value={value} 
           onChange ={ (e) => { updateMethod(e.target.value)} }>
-            
         </textarea>
       </section>
     </>
