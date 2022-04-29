@@ -5,10 +5,12 @@ const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateMethod
   return (
     <>
       <section className="form--row">
-        <label htmlFor={id}>{labelName}: </label>
-        <input type='text' id={id} 
+        <label className='form--items' htmlFor={id}>{labelName}: </label>
+        <textarea id={id} className='form--items' 
           value={value} 
-          onChange ={ (e) => { updateMethod(e.target.value)} } />
+          onChange ={ (e) => { updateMethod(e.target.value)} }>
+            
+        </textarea>
       </section>
     </>
   )

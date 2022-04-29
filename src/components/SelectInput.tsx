@@ -5,9 +5,10 @@ const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateMethod})
   return (
     <>
     <section className="form--row">
-      <label htmlFor={id}>{labelName}: </label>
+      <label htmlFor={id} className='form--items'>{labelName}: </label>
       <select 
         id={id} 
+        className='form--items'
         defaultValue={value}
         onChange ={ (e) => { updateMethod(e.target.value)} }>
           <option value='0'>Select...</option>
