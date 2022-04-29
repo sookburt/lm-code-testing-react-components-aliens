@@ -1,7 +1,6 @@
-interface Props {
-  errorMessage: string;
-}
-const ValidationError: React.FC<Props> = (props) => {
+import { ValidationInterface } from "../interfaces/ValidationInterface";
+
+const ValidationError: React.FC<ValidationInterface> = (props) => {
 
   return (
     <>

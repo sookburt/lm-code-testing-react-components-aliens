@@ -11,12 +11,12 @@ import { RecordInterface } from '../interfaces/RecordInterface';
 
 const W12MForm = () => {
 
-	const [speciesNameState, setSpeciesNameState] = useState<string>('Human');
+	const [speciesNameState, setSpeciesNameState] = useState<string>('');
 	const changeSpeciesName = (name: string) => {
 		setSpeciesNameState(name);
 	}
 	
-	const [planetNameState, setPlanetNameState] = useState<string>('Earth');
+	const [planetNameState, setPlanetNameState] = useState<string>('');
 	const changePlanetName = (planetName: string) => {
 		setPlanetNameState(planetName);
 	}
@@ -26,7 +26,7 @@ const W12MForm = () => {
 		setNumberOfBeingsState(numberOfBeings);
 	}
 
-	const [mathState, setMathState] = useState<string>('0');
+	const [mathState, setMathState] = useState<string>('');
 	const updateMathState = (mathSelection: string) => {
 		setMathState(mathSelection);
 	}
