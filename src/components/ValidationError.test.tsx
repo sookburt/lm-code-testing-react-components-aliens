@@ -12,7 +12,7 @@ describe("ValidationError",  () => {
   test("renders validation error", () => {
     const state: ValidationInterface = {errorMessage: 'There was an error'}
     renderInput(state);
-    const tag = screen.getByText('There was an error');
+    const tag = screen.getByText(/There was an error/i);
     expect(tag).toBeInTheDocument();
   });
 });

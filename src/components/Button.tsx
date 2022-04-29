@@ -7,7 +7,11 @@ const Button: React.FC<Props> = (props) => {
     <>
     <section className='form--row'>
       <div className='form--items' ></div>
-      <button className='form--items' onClick={(e) => {e.preventDefault(); props.clickHandler()}}>Submit form</button>
+      <button className='form--items' 
+        onClick={(e) => {e.preventDefault(); 
+          props.clickHandler()}}
+      >Submit form
+      </button>
     </section>
     </>
   )
