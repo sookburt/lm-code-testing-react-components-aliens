@@ -3,6 +3,7 @@ const Button: React.FC = () => {
 
   return (
     <>
+      <button >Submit form</button>
     </>
   )
 }
