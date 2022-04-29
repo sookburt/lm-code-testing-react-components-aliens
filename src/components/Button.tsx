@@ -1,9 +1,11 @@
-
-const Button: React.FC = () => {
+interface Props {
+  clickHandler: () => boolean;
+}
+const Button: React.FC<Props> = (props) => {
 
   return (
     <>
-      <button >Submit form</button>
+      <button onSubmit={(e) => {e.preventDefault(); props.clickHandler()}}>Submit form</button>
     </>
   )
 }
