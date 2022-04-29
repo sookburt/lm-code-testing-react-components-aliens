@@ -1,11 +1,6 @@
-export interface Props {
-  id: string;
-  labelName: string;
-  selectedValue: string;
-  updateMethod: (value: string) => void;
-}
+import { InputProps } from "../interfaces/InputInterface";
 
-const SelectInput: React.FC<Props> = ({id, labelName, selectedValue, updateMethod}) => {
+const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateMethod}) => {
 
   return (
     <>
@@ -13,7 +8,7 @@ const SelectInput: React.FC<Props> = ({id, labelName, selectedValue, updateMetho
       <label htmlFor={id}>{labelName}: </label>
       <select 
         id={id} 
-        defaultValue={selectedValue}
+        defaultValue={value}
         onChange ={ (e) => { updateMethod(e.target.value)} }>
           <option value='0'>Select...</option>
           <option value='4'>4</option>
@@ -22,7 +17,6 @@ const SelectInput: React.FC<Props> = ({id, labelName, selectedValue, updateMetho
     </section>
     </>
   )
-
 }
 
 export default SelectInput;

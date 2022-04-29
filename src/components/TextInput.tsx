@@ -1,11 +1,6 @@
-export interface Props {
-  id: string;
-  labelName: string;
-  value: string;
-  updateMethod: (name: string) => void;
-}
+import { InputProps } from "../interfaces/InputInterface";
 
-const TextInput: React.FC<Props> = ({id, labelName, value, updateMethod}) => {
+const TextInput: React.FC<InputProps> = ({id, labelName, value, updateMethod}) => {
 
   return (
     <>
@@ -17,7 +12,6 @@ const TextInput: React.FC<Props> = ({id, labelName, value, updateMethod}) => {
     </section>
     </>
   )
-
 }
 
 export default TextInput;

@@ -33,6 +33,7 @@ const W12MForm = () => {
 				<TextInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateMethod={ changePlanetName} />
 				<TextInput id={'num_beings'} labelName={'Number Of Beings'} value={numberOfBeingsState} updateMethod={ changeNumberOfBeings} />
 				<SelectInput id={'math_input'} labelName={'What is 2 + 2'} selectedValue={mathState} updateMethod={ updateMathState } />
+				
 			</section>
 		</section>
 	);
