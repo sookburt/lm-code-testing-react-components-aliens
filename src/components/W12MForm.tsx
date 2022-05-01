@@ -12,28 +12,28 @@ import { RecordInterface } from '../interfaces/RecordInterface';
 const W12MForm = () => {
 
 	const [speciesNameState, setSpeciesNameState] = useState<string>('');
-	const changeSpeciesName = (name: string) => {
+	const changeSpeciesName = (name:string) => {
 		setSpeciesNameState(name);
 	}
 	
 	const [planetNameState, setPlanetNameState] = useState<string>('');
-	const changePlanetName = (planetName: string) => {
-		setPlanetNameState(planetName);
+	const changePlanetName = (name:string) => {
+		setPlanetNameState(name);
 	}
 	
 	const [numberOfBeingsState, setNumberOfBeingsState] = useState<string>('0');
-	const changeNumberOfBeings = (numberOfBeings: string) => {
-		setNumberOfBeingsState(numberOfBeings);
+	const changeNumberOfBeings = (name:string) => {
+		setNumberOfBeingsState(name);
 	}
 
 	const [mathState, setMathState] = useState<string>('');
-	const updateMathState = (mathSelection: string) => {
-		setMathState(mathSelection);
+	const updateMathState = (name:string) => {
+		setMathState(name);
 	}
 
 	const [explainerState, setExplainerState] = useState<string>(''); 
-	const updateExplainerState = (inputText: string) => {
-		setExplainerState(inputText);
+	const updateExplainerState = (name: string) => {
+		setExplainerState(name);
 	}
 
 	const emptyError = { 'species': '', 'planet': '', 'beings': '', 'math': '', 'reason': '' };
@@ -70,15 +70,15 @@ const W12MForm = () => {
 		<section className='w12MForm'>
 			<W12MHeader />
 			<section className='form--items'>
-				<TextInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateMethod={ changeSpeciesName} />
+				<TextInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} />
 				{errorState.species.length > 0 ?? <ValidationError errorMessage={errorState.species} />}
-				<TextInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateMethod={ changePlanetName} />
+				<TextInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName} />
 				{errorState.planet.length > 0 ?? <ValidationError errorMessage={errorState.planet} />}
-				<TextInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateMethod={ changeNumberOfBeings} />
+				<TextInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings} />
 				{errorState.beings.length > 0 ?? <ValidationError errorMessage={errorState.beings} />}
-				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateMethod={ updateMathState } />
+				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState } />
 				{errorState.math.length > 0 ?? <ValidationError errorMessage={errorState.math} />}
-				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateMethod={ updateExplainerState } />
+				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } />
 				{errorState.reason.length > 0 ?? <ValidationError errorMessage={errorState.reason} />}
 				<Button clickHandler={isFormValid} />
 			</section>

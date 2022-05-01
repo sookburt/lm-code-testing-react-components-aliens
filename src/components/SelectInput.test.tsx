@@ -13,7 +13,7 @@ describe("Select Input", () => {
       id={state.id} 
       labelName={state.labelName} 
       value={state.value} 
-      updateMethod={state.updateMethod} />);
+      updateFormState={state.updateFormState} />);
   }
 
   test("That appears and behaves correctly.", async() => {
@@ -24,7 +24,7 @@ describe("Select Input", () => {
       id: 'math_input', 
       labelName: 'What is 2 + 2?', 
       value: '0', 
-      updateMethod: mock 
+      updateFormState: mock 
     }
     renderInput(state);
 
@@ -41,7 +41,7 @@ describe("Select Input", () => {
         screen.getByRole('option', { name: 'Not 4'}),
       );
     
-    expect((screen.getByRole('option', { name: /Not 4/i }) as HTMLOptionElement).selected).toBe(true); // failing
+    expect((screen.getByRole('option', { name: /Not 4/i }) as HTMLOptionElement).selected).toBe(true); 
     expect(mock).toHaveBeenCalled();
 
   });
