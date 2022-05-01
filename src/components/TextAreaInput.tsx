@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { InputProps } from "../interfaces/InputInterface"
 
-const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateMethod}) => {
+const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateFormState}) => {
+
+  const [localState, setLocalState] = useState<string>(value);
+
+  useEffect(() => {
+    updateFormState(localState);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [localState])
 
   return (
     <>
@@ -8,7 +16,7 @@ const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateMethod
         <label className='form--items' htmlFor={id}>{labelName}: </label>
         <textarea id={id} className='form--items' 
           value={value} 
-          onChange ={ (e) => { updateMethod(e.target.value)} }>
+          onChange ={ (e) => { setLocalState(e.target.value)} }>
         </textarea>
       </section>
     </>

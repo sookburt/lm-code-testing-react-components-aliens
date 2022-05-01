@@ -11,7 +11,7 @@ describe("TextAreaInput",  () => {
       id={state.id} 
       labelName={state.labelName} 
       value={state.value} 
-      updateMethod={state.updateMethod} />);
+      updateFormState={state.updateFormState} />);
   }
 
  test("renders text area input", () => {
@@ -22,7 +22,7 @@ describe("TextAreaInput",  () => {
     id: 'text_input', 
     labelName: 'Reason for sparing', 
     value: 'Because we has art innit!', 
-    updateMethod: mock }
+    updateFormState: mock }
   
   renderInput(state);
   
