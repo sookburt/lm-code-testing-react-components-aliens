@@ -7,7 +7,7 @@ describe("Button",  () => {
  test("renders button", () => {
 
   const mockFunction = jest.fn(() => false);
-  render(<Button clickHandler={mockFunction}/>);
+  render(<Button clickHandler={mockFunction} isDisabled={false} />);
   
   const labelText = screen.getByText(/Submit form/i);
   expect(labelText).toBeInTheDocument();
@@ -16,7 +16,7 @@ describe("Button",  () => {
  test("calls validate method", () => {
 
   const mockFunction = jest.fn(() => false);
-  render(<Button clickHandler={mockFunction}/>);
+  render(<Button clickHandler={mockFunction} isDisabled={false} />);
 
   const submitButton = screen.getByRole('button');
   userEvent.click(submitButton);
