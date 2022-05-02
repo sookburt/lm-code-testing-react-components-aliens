@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import W12MHeader from './W12MHeader';
 import SelectInput from './SelectInput';
 import TextAreaInput from './TextAreaInput';
@@ -11,38 +11,49 @@ import BeingsInput from './BeingsInput';
 const W12MForm = () => {
 
 	const [speciesNameState, setSpeciesNameState] = useState<string>('');
+	const [speciesErrorState, setSpeciesErrorState] = useState<boolean>(false);
 	const changeSpeciesName = (name:string) => {
 		setSpeciesNameState(name);
 	}
 	
 	const [planetNameState, setPlanetNameState] = useState<string>('');
+	const [planetErrorState, setPlanetErrorState] = useState<boolean>(false);
 	const changePlanetName = (name:string) => {
 		setPlanetNameState(name);
 	}
 	
 	const [numberOfBeingsState, setNumberOfBeingsState] = useState<string>('0');
+	const [beingsErrorState, setBeingsErrorState] = useState<boolean>(false);
 	const changeNumberOfBeings = (name:string) => {
 		setNumberOfBeingsState(name);
 	}
-
+	
 	const [mathState, setMathState] = useState<string>('');
+	const [mathErrorState, setMathErrorState] = useState<boolean>(false);
 	const updateMathState = (name:string) => {
 		setMathState(name);
 	}
 
 	const [explainerState, setExplainerState] = useState<string>(''); 
+	const [explainerErrorState, setExplainerErrorState] = useState<boolean>(false);
 	const updateExplainerState = (name: string) => {
 		setExplainerState(name);
 	}
 
-	
-	const [errorState, setErrorState] = useState<boolean>(false);
+	const [formErrorState, setFormErrorState] = useState<boolean>(false);
+
+	useEffect(() => {
+
+		setFormErrorState(speciesErrorState && planetErrorState && beingsErrorState && mathErrorState && explainerErrorState);
+
+	}, [speciesErrorState, planetErrorState, beingsErrorState, mathErrorState, explainerErrorState]);
 
 	const isFormValid = () => {
 
 		console.log('inside isFormValid');
 
-		let isValid: boolean = errorState;
+		let isValid: boolean = formErrorState;
+		console.log('The Error State is currently: ' + isValid);
 
 		if (isValid) {
 			const record:RecordInterface = buildRecord();
@@ -64,15 +75,12 @@ const W12MForm = () => {
 		<section className='w12MForm'>
 			<W12MHeader />
 			<section className='form--items'>
-				<SpeciesNameInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} formErrorState={errorState} updateErrorFormState={ setErrorState } />
-				<PlanetNameInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName}  formErrorState={errorState} updateErrorFormState={ setErrorState } />
-				<BeingsInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings}  formErrorState={errorState} updateErrorFormState={ setErrorState } />
-				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState }  formErrorState={errorState} updateErrorFormState={ setErrorState } />
-				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } formErrorState={errorState}  updateErrorFormState={ setErrorState } />
-				{errorState ? 
-					<Button clickHandler={isFormValid} isDisabled={''} /> :
-					<Button clickHandler={isFormValid} isDisabled={'disabled'} /> 
-				}
+				<SpeciesNameInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} formErrorState={speciesErrorState} updateErrorFormState={ setSpeciesErrorState } />
+				<PlanetNameInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName}  formErrorState={planetErrorState} updateErrorFormState={ setPlanetErrorState } />
+				<BeingsInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings}  formErrorState={beingsErrorState} updateErrorFormState={ setBeingsErrorState } />
+				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState }  formErrorState={mathErrorState} updateErrorFormState={ setMathErrorState } />
+				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } formErrorState={explainerErrorState}  updateErrorFormState={ setExplainerErrorState } />
+				<Button clickHandler={isFormValid} isDisabled={formErrorState} /> 
 			</section>
 		</section>
 	);

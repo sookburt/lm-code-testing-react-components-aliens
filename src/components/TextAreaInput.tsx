@@ -17,7 +17,7 @@ const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateFormSt
 
   useEffect(() => {
 
-    updateErrorFormState(formErrorState && (localErrorState===undefined)); 
+    updateErrorFormState(localErrorState===''); 
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localErrorState]);

@@ -16,7 +16,7 @@ const PlanetNameInput: React.FC<InputProps> = ({id, labelName, value, updateForm
 
   useEffect(() => {
 
-    updateErrorFormState(formErrorState && (localErrorState===undefined)); 
+    updateErrorFormState(localErrorState===''); 
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localErrorState]);
