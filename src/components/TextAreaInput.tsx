@@ -27,7 +27,7 @@ const TextAreaInput: React.FC<InputProps> = ({id, labelName, value, updateFormSt
 
     const length = localState.length;
     let errorMessage = (length < 17 || length > 153) 
-      ? 'Your reason must be between 17 and 153 characters.'
+      ? 'ERROR: Your reason must be between 17 and 153 characters.'
       : '';
 
     return errorMessage;

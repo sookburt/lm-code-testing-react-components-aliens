@@ -28,16 +28,16 @@ const BeingsInput: React.FC<InputProps> = ({id, labelName, value, updateFormStat
     const numberOfBeings: number = parseInt(localState);
 
     let errorMessage =  isNaN(numberOfBeings) 
-      ? 'Only numbers are acceptable'
+      ? 'ERROR: Only numbers are acceptable'
       : '';
 
     errorMessage = (numberOfBeings < 1000000000) 
-      ? 'The length of your species name must be greater than 1,000,000,000'
+      ? 'ERROR: The length of your species name must be greater than 1,000,000,000'
       : errorMessage;
 
     errorMessage = (/^[0-9]*$/.test(localState)) 
     ? errorMessage 
-    : 'Only the numbers are acceptable.';
+    : 'ERROR: Only the numbers are acceptable.';
     
     return errorMessage;
   }

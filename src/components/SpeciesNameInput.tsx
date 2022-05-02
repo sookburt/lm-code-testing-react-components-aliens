@@ -27,12 +27,12 @@ const SpeciesNameInput: React.FC<InputProps> = ({id, labelName, value, updateFor
 
     const length = localState.length;
     let errorMessage = (length < 3 || length > 23) 
-      ? 'The length of your species name must be between 3 and 23.'
+      ? 'ERROR: The length of your species name must be between 3 and 23.'
       : '';
 
     errorMessage = /^[a-zA-Z\s]*$/.test(localState) 
       ? errorMessage 
-      : 'Only the letters a-z are acceptable.';
+      : 'ERROR: Only the letters a-z are acceptable.';
 
     return errorMessage;
   }

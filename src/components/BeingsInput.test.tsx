@@ -17,7 +17,7 @@ describe("BeingsInput", () => {
     />);
   }
 
-  test("renders Species Name input label", () => {
+  test("renders Number of beings input label", () => {
     const state: InputProps = {id: 'num_beings', labelName: 'Number of beings', value: '0', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
     renderInput(state);
     const labelText = screen.getByText(/Number of beings/i);
@@ -50,5 +50,25 @@ describe("BeingsInput", () => {
 
     expect(input.value).toBe(inputText);
     expect(updateStateMock).toHaveBeenCalledTimes(clickAndTypeLength);
+  });
+
+  test("renders Error message if number too low input", () => {
+    const state: InputProps = {id: 'num_beings', labelName: 'Number of beings', value: '0', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: The length of your species name must be greater than 1,000,000,000');
+  });
+
+  test("renders Error message if nun-numeric values added", () => {
+    const state: InputProps = {id: 'num_beings', labelName: 'Number of beings', value: 'ppp', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: Only the numbers are acceptable.');
+  });
+
+  test("renders no error message if non-numeric values added", () => {
+    const state: InputProps = {id: 'num_beings', labelName: 'Number of beings', value: '10000000001', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    expect(() => {screen.getByText(/ERROR:/i)}).toThrow();
   });
 });

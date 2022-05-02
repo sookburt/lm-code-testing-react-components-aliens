@@ -26,7 +26,7 @@ const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateFormStat
   const validate: () => string = () => {
 
     let errorMessage = (localState === 'Not 4') 
-      ? 'This is not correct... your planet is doomed!'
+      ? 'ERROR: This is not correct... your planet is doomed!'
       : '';
 
     return errorMessage;

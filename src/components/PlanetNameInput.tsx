@@ -26,12 +26,12 @@ const PlanetNameInput: React.FC<InputProps> = ({id, labelName, value, updateForm
 
     const length = localState.length;
     let errorMessage = (length < 2 || length > 49) 
-      ? 'The length of your planet name must be between 2 and 49.'
+      ? 'ERROR: The length of your planet name must be between 2 and 49.'
       : '';
 
     errorMessage = /^[a-zA-Z0-9\s]*$/.test(localState) 
       ? errorMessage 
-      : 'Only the letters a-z, spaces and numbers are acceptable.';
+      : 'ERROR: Only the letters a-z, spaces and numbers are acceptable.';
 
     return errorMessage;
   }
