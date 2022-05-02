@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InputProps } from "../interfaces/InputInterface";
 import ValidationError from "./ValidationError";
 
-const SpeciesNameInput: React.FC<InputProps> = ({id, labelName, value, updateFormState, formErrorState, updateErrorFormState}) => {
+const SpeciesNameInput: React.FC<InputProps> = ({id, labelName, value, updateFormState, formErrorState, updateFormErrorState}) => {
 
   const [localState, setLocalState] = useState<string>(value);
   const [localErrorState, setLocalErrorState] = useState<string>('');
@@ -17,7 +17,7 @@ const SpeciesNameInput: React.FC<InputProps> = ({id, labelName, value, updateFor
 
   useEffect(() => {
 
-    updateErrorFormState(localErrorState===''); 
+    updateFormErrorState(localErrorState===''); 
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localErrorState]);

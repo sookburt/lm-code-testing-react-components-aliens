@@ -13,18 +13,24 @@ describe("Select Input", () => {
       id={state.id} 
       labelName={state.labelName} 
       value={state.value} 
-      updateFormState={state.updateFormState} />);
+      updateFormState={state.updateFormState}
+      formErrorState={state.formErrorState}  
+      updateFormErrorState={state.updateFormErrorState} 
+    />);
   }
 
   test("That appears and behaves correctly.", async() => {
 
-    const mock = jest.fn();
+    const formStateMock = jest.fn();
+    const formErrorStateMock = jest.fn();
 
     const state: InputProps = {
       id: 'math_input', 
       labelName: 'What is 2 + 2?', 
       value: '0', 
-      updateFormState: mock 
+      updateFormState: formStateMock, 
+      formErrorState: false, 
+      updateFormErrorState: formErrorStateMock,
     }
     renderInput(state);
 
@@ -42,7 +48,7 @@ describe("Select Input", () => {
       );
     
     expect((screen.getByRole('option', { name: /Not 4/i }) as HTMLOptionElement).selected).toBe(true); 
-    expect(mock).toHaveBeenCalled();
+    expect(formStateMock).toHaveBeenCalled();
 
   });
 

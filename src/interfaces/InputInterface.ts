@@ -4,5 +4,5 @@ export interface InputProps {
   value: string;
   updateFormState: (name: string) => void; 
   formErrorState: boolean;
-  updateErrorFormState: (value: boolean) => void;
+  updateFormErrorState: (value: boolean) => void;
 }

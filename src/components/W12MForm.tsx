@@ -75,11 +75,11 @@ const W12MForm = () => {
 		<section className='w12MForm'>
 			<W12MHeader />
 			<section className='form--items'>
-				<SpeciesNameInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} formErrorState={speciesErrorState} updateErrorFormState={ setSpeciesErrorState } />
-				<PlanetNameInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName}  formErrorState={planetErrorState} updateErrorFormState={ setPlanetErrorState } />
-				<BeingsInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings}  formErrorState={beingsErrorState} updateErrorFormState={ setBeingsErrorState } />
-				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState }  formErrorState={mathErrorState} updateErrorFormState={ setMathErrorState } />
-				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } formErrorState={explainerErrorState}  updateErrorFormState={ setExplainerErrorState } />
+				<SpeciesNameInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} formErrorState={speciesErrorState} updateFormErrorState={ setSpeciesErrorState } />
+				<PlanetNameInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName}  formErrorState={planetErrorState} updateFormErrorState={ setPlanetErrorState } />
+				<BeingsInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings}  formErrorState={beingsErrorState} updateFormErrorState={ setBeingsErrorState } />
+				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState }  formErrorState={mathErrorState} updateFormErrorState={ setMathErrorState } />
+				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } formErrorState={explainerErrorState}  updateFormErrorState={ setExplainerErrorState } />
 				<Button clickHandler={isFormValid} isDisabled={formErrorState} /> 
 			</section>
 		</section>

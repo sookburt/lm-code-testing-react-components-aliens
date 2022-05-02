@@ -2,46 +2,45 @@ import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { InputProps } from '../interfaces/InputInterface';
-import TextInput from './BeingsInput';
+import PlanetNameInput from './PlanetNameInput';
 
-describe("TextInput", () => {
+describe("PlanetNameInput", () => {
 
   const renderInput = (state:InputProps) => {
-    render(<TextInput 
+    render(<PlanetNameInput 
       id={state.id} 
       labelName={state.labelName} 
       value={state.value} 
-      updateFormState={state.updateFormState} />);
+      updateFormState={state.updateFormState}  
+      formErrorState={state.formErrorState}  
+      updateFormErrorState={state.updateFormErrorState} 
+    />);
   }
 
   test("renders Planet Name input label", () => {
-    const state: InputProps = {id: 'planet_name', labelName: 'Planet Name', value: 'Earth', updateFormState: () => {} }
+    const state: InputProps = {id: 'planet_name', labelName: 'Planet Name', value: 'Earth', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
     renderInput(state);
     const labelText = screen.getByText(/Planet Name/i);
     expect(labelText).toBeInTheDocument();
   });
 
-  test("renders Species Name input label", () => {
-    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: 'Human', updateFormState: () => {} }
-    renderInput(state);
-    const labelText = screen.getByText(/Species Name/i);
-    expect(labelText).toBeInTheDocument();
-  });
-
   test("renders input field and allows user to type", async () => {
 
-    const mock = jest.fn();
+    const updateStateMock = jest.fn();
+    const updateErrorStateMock = jest.fn();
 
     const state: InputProps = {
-        id: 'num_beings', 
-        labelName: 'Number Of Beings', 
+        id: 'planet_name', 
+        labelName: 'PlanetName', 
         value: '', 
-        updateFormState: mock,
+        updateFormState: updateStateMock,
+        formErrorState: false, 
+        updateFormErrorState: updateErrorStateMock
       }
     renderInput(state);
 
     const input = screen.getByRole('textbox') as HTMLInputElement;
-    const inputText = '200,000,000,000';
+    const inputText = 'Earth';
     const clickAndTypeLength = inputText.length+1;
 
     await userEvent.type(
@@ -50,6 +49,6 @@ describe("TextInput", () => {
     );
 
     expect(input.value).toBe(inputText);
-    expect(mock).toHaveBeenCalledTimes(clickAndTypeLength);
+    expect(updateStateMock).toHaveBeenCalledTimes(clickAndTypeLength);
   });
 });

@@ -11,18 +11,25 @@ describe("TextAreaInput",  () => {
       id={state.id} 
       labelName={state.labelName} 
       value={state.value} 
-      updateFormState={state.updateFormState} />);
+      updateFormState={state.updateFormState} 
+      formErrorState={state.formErrorState}  
+      updateFormErrorState={state.updateFormErrorState} 
+      />);
   }
 
  test("renders text area input", () => {
 
-  const mock = jest.fn();
+  const formStateMock = jest.fn();
+  const formErrorStateMock = jest.fn();
   
   const state: InputProps = {
     id: 'text_input', 
     labelName: 'Reason for sparing', 
     value: 'Because we has art innit!', 
-    updateFormState: mock }
+    updateFormState: formStateMock,
+    formErrorState: false,
+    updateFormErrorState: formErrorStateMock,
+  }
   
   renderInput(state);
   
@@ -34,6 +41,6 @@ describe("TextAreaInput",  () => {
   
   const inputString = 'Happy!';
   userEvent.type(inputValue, inputString);
-  expect(mock).toBeCalledTimes(inputString.length);
- });
+  expect(formStateMock).toBeCalledTimes(inputString.length+1);
+  });
 });
