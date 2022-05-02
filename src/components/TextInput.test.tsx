@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { InputProps } from '../interfaces/InputInterface';
-import TextInput from './TextInput';
+import TextInput from './BeingsInput';
 
 describe("TextInput", () => {
 

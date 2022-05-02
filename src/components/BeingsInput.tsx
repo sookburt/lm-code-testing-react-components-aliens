@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InputProps } from "../interfaces/InputInterface";
 import ValidationError from "./ValidationError";
 
-const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateFormState, formErrorState, updateErrorFormState}) => {
+const BeingsInput: React.FC<InputProps> = ({id, labelName, value, updateFormState, formErrorState, updateErrorFormState}) => {
 
   const [localState, setLocalState] = useState<string>(value);
   const [localErrorState, setLocalErrorState] = useState<string>('');
@@ -17,18 +17,28 @@ const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateFormStat
 
   useEffect(() => {
 
-    updateErrorFormState(formErrorState && (localErrorState===undefined)); 
-
+    updateErrorFormState(formErrorState && (localErrorState===undefined));
+    
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localErrorState]);
 
-  //  "4" must be selected. Selecting "Not 4" should display an error.
+  // Numbers ONLY. Must be at least 1,000,000,000.
   const validate: () => string = () => {
+    
+    const numberOfBeings: number = parseInt(localState);
 
-    let errorMessage = (localState === 'Not 4') 
-      ? 'This is not correct... your planet is doomed!'
+    let errorMessage =  isNaN(numberOfBeings) 
+      ? 'Only numbers are acceptable'
       : '';
 
+    errorMessage = (numberOfBeings < 1000000000) 
+      ? 'The length of your species name must be greater than 1,000,000,000'
+      : errorMessage;
+
+    errorMessage = (/^[0-9]*$/.test(localState)) 
+    ? errorMessage 
+    : 'Only the numbers are acceptable.';
+    
     return errorMessage;
   }
 
@@ -36,22 +46,18 @@ const SelectInput: React.FC<InputProps> = ({id, labelName, value, updateFormStat
     <>
     <section className="form--row">
       <label htmlFor={id} className='form--items'>{labelName}: </label>
-      <select 
+      <input type='text' 
         id={id} 
         className='form--items'
-        defaultValue={value}
+        defaultValue={localState} 
         onChange ={ (e) => { 
           e.preventDefault();
-          setLocalState(e.target.value)}
-        }>
-          <option value='0'>Select...</option>
-          <option value='4'>4</option>
-          <option value='Not 4'>Not 4</option>
-      </select>
-      <ValidationError errorMessage={localErrorState} />
+          setLocalState(e.target.value)} 
+        }></input>
+        <ValidationError errorMessage={localErrorState} />
     </section>
     </>
   )
 }
 
-export default SelectInput;
+export default BeingsInput;

@@ -1,5 +1,6 @@
 interface Props {
-  clickHandler: () => boolean;
+  clickHandler: () => void;
+  isDisabled: string;
 }
 const Button: React.FC<Props> = (props) => {
 
@@ -9,7 +10,8 @@ const Button: React.FC<Props> = (props) => {
       <div className='form--items' ></div>
       <button className='form--items' 
         onClick={(e) => {e.preventDefault(); 
-          props.clickHandler()}}
+          props.clickHandler()}} 
+        {...props.isDisabled}
       >Submit form
       </button>
     </section>

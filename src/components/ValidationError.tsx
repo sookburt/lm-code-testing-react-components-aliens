@@ -4,7 +4,11 @@ const ValidationError: React.FC<ValidationInterface> = (props) => {
 
   return (
     <>
-      <p className="text__danger text-items">{props.errorMessage}</p>
+      <div></div>
+      <div className="form--items">
+        <p><span className="text__danger">{props.errorMessage}</span></p>
+      </div>
+      {/* TODO: find out why resizes element when error exists... empty div v existing div? */}
     </>
   )
 }

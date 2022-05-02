@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import W12MHeader from './W12MHeader';
-import TextInput from './TextInput';
 import SelectInput from './SelectInput';
 import TextAreaInput from './TextAreaInput';
 import Button from './Button';
-import { ErrorInterface } from '../interfaces/ErrorInterface';
-import ValidationError from './ValidationError';
 import { RecordInterface } from '../interfaces/RecordInterface';
-
+import SpeciesNameInput from './SpeciesNameInput';
+import PlanetNameInput from './PlanetNameInput';
+import BeingsInput from './BeingsInput';
 
 const W12MForm = () => {
 
@@ -36,24 +35,19 @@ const W12MForm = () => {
 		setExplainerState(name);
 	}
 
-	const emptyError = { 'species': '', 'planet': '', 'beings': '', 'math': '', 'reason': '' };
-	const [errorState, setErrorState] = useState<ErrorInterface>(emptyError);
+	
+	const [errorState, setErrorState] = useState<boolean>(false);
+
 	const isFormValid = () => {
+
 		console.log('inside isFormValid');
 
-		const error =  { 'species': '', 'planet': '', 'beings': '', 'math': '', 'reason': '' };
+		let isValid: boolean = errorState;
 
-		let isValid:boolean = true;
-
-		//TODO: handle validation.
-
-		if(!isValid){
-			setErrorState(error);
-			return false;
-		} 
-		const record:RecordInterface = buildRecord();
-		console.log(record);
-		return true;
+		if (isValid) {
+			const record:RecordInterface = buildRecord();
+			console.log(record);
+		}
 	}
 
 	const buildRecord = () => {
@@ -70,27 +64,18 @@ const W12MForm = () => {
 		<section className='w12MForm'>
 			<W12MHeader />
 			<section className='form--items'>
-				<TextInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} />
-				{errorState.species.length > 0 ?? <ValidationError errorMessage={errorState.species} />}
-				<TextInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName} />
-				{errorState.planet.length > 0 ?? <ValidationError errorMessage={errorState.planet} />}
-				<TextInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings} />
-				{errorState.beings.length > 0 ?? <ValidationError errorMessage={errorState.beings} />}
-				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState } />
-				{errorState.math.length > 0 ?? <ValidationError errorMessage={errorState.math} />}
-				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } />
-				{errorState.reason.length > 0 ?? <ValidationError errorMessage={errorState.reason} />}
-				<Button clickHandler={isFormValid} />
+				<SpeciesNameInput id={'species_name'} labelName={'Species Name'} value={speciesNameState} updateFormState={ changeSpeciesName} formErrorState={errorState} updateErrorFormState={ setErrorState } />
+				<PlanetNameInput id={'planet_name'} labelName={'Planet Name'} value={planetNameState} updateFormState={ changePlanetName}  formErrorState={errorState} updateErrorFormState={ setErrorState } />
+				<BeingsInput id={'num_beings'} labelName={'Number of beings'} value={numberOfBeingsState} updateFormState={ changeNumberOfBeings}  formErrorState={errorState} updateErrorFormState={ setErrorState } />
+				<SelectInput id={'math_input'} labelName={'What is 2 + 2?'} value={mathState} updateFormState={ updateMathState }  formErrorState={errorState} updateErrorFormState={ setErrorState } />
+				<TextAreaInput  id={'text_input'} labelName={'Reason for sparing'} value={explainerState} updateFormState={ updateExplainerState } formErrorState={errorState}  updateErrorFormState={ setErrorState } />
+				{errorState ? 
+					<Button clickHandler={isFormValid} isDisabled={''} /> :
+					<Button clickHandler={isFormValid} isDisabled={'disabled'} /> 
+				}
 			</section>
 		</section>
 	);
 };
 
 export default W12MForm;
-
-/* 
-Useful docs to use for testing.
-	https://testing-library.com/docs/example-input-event 
-	https://react-testing-library-examples.netlify.app/
-	https://testing-playground.com/
-*/

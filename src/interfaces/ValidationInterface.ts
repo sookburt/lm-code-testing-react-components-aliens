@@ -1,3 +1,3 @@
 export interface ValidationInterface {
-  errorMessage: string;
+  errorMessage: string | undefined;
 }

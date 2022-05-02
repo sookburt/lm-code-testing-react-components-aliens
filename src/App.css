@@ -14,6 +14,7 @@ body {
 .form--items {
 	display: grid;
 	flex-direction: row;
+	min-height: 30px;
 }
 
 .form--row {
@@ -26,3 +27,4 @@ body {
 .text__danger {
 	color: red;
 }
+
