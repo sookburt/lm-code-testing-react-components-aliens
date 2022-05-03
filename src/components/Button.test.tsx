@@ -13,14 +13,24 @@ describe("Button",  () => {
   expect(labelText).toBeInTheDocument();
  });
 
- test("calls validate method", () => {
+ test("calls validate method when button not disabled", () => {
 
   const mockFunction = jest.fn(() => false);
-  render(<Button clickHandler={mockFunction} isDisabled={false} />);
+  render(<Button clickHandler={mockFunction} isDisabled={true} />);
 
   const submitButton = screen.getByRole('button');
   userEvent.click(submitButton);
   expect(mockFunction).toHaveBeenCalledTimes(1);
+ });
+
+ test("clicking button does not call clickHandler when button is disabled", () => { 
+
+  const mockFunction = jest.fn(() => false);
+  render(<Button clickHandler={mockFunction} isDisabled={false} />);
+  
+  const submitButton = screen.getByRole('button');
+  userEvent.click(submitButton);
+  expect(mockFunction).toHaveBeenCalledTimes(0);
  });
 
 });
