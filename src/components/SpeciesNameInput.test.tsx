@@ -30,7 +30,7 @@ describe("SpeciesNameInput", () => {
     const updateStateMock = jest.fn();
     const updateErrorStateMock = jest.fn();
 
-    const state: InputProps = {
+    const state: InputProps = { 
         id: 'species_name', 
         labelName: 'SpeciesName', 
         value: '', 
@@ -52,4 +52,39 @@ describe("SpeciesNameInput", () => {
     expect(input.value).toBe(inputText);
     expect(updateStateMock).toHaveBeenCalledTimes(clickAndTypeLength);
   });
+
+  test("renders Error message if number of characters is too low", () => {
+    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: 'H', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: The length of your species name must be between 3 and 23.');
+  });
+
+  test("renders Error message if number of characters is too high", () => {
+    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: 'Huuuuummmmmmaaaaaaaannnnnn', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: The length of your species name must be between 3 and 23.');
+  });
+
+  test("renders Error message if numbers are added", () => {
+    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: '333', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: Only the letters a-z are acceptable.');
+  });
+
+  test("renders Error message if special characters are added", () => {
+    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: '#*', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: Only the letters a-z are acceptable.');
+  });
+
+  test("renders no error message if correct number of letters added", () => {
+    const state: InputProps = {id: 'species_name', labelName: 'Species Name', value: 'Human', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    expect(() => {screen.getByText(/ERROR:/i)}).toThrow();
+  });
+
 });
