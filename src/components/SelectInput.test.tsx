@@ -49,7 +49,28 @@ describe("Select Input", () => {
     
     expect((screen.getByRole('option', { name: /Not 4/i }) as HTMLOptionElement).selected).toBe(true); 
     expect(formStateMock).toHaveBeenCalled();
+  });
 
+  test("renders Error message if 'Not 4' is selected", async() => {
+    const state: InputProps = {id: 'math_input', labelName: 'What is 2 + 2?', value: '0', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+
+    await userEvent.selectOptions(
+      screen.getByRole('combobox'), 
+      screen.getByRole('option', { name: 'Not 4'}),
+    );
+    const errorMessage = screen.getByText(/ERROR:/i);
+    expect(errorMessage).toHaveTextContent('ERROR: This is not correct... your planet is doomed!');
+  });
+
+  test("renders no error message if correct option chosen", async() => {
+    const state: InputProps = {id: 'math_input', labelName: 'What is 2 + 2?', value: '0', updateFormState: () => {}, formErrorState: false, updateFormErrorState: () => {}  }
+    renderInput(state);
+    await userEvent.selectOptions(
+      screen.getByRole('combobox'), 
+      screen.getByRole('option', { name: '4'}),
+    );
+    expect(() => {screen.getByText(/ERROR:/i)}).toThrow();
   });
 
 });
